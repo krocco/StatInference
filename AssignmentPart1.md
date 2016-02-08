@@ -1,10 +1,5 @@
----
-title: "Statistical Inference Assignment: Part 1"
-author: Michael Crocco
-output: 
-  html_document:
-    keep_md: true
----
+# Statistical Inference Assignment: Part 1
+Michael Crocco  
 
 
 ## Overview
@@ -13,21 +8,31 @@ Using a randomly generated exponential distribution, sample mean and standard de
 
 ## Generate Distribution
 First, we need to set variables and generate some numbers.
-```{r generate, cache=TRUE}
+
+```r
 lambda <- 0.2 # rate parameter in exponential distribution
 n = 40 #number of exponentials
 mns = NULL
 for (i in 1 : 1000) mns = c(mns, mean(rexp(n,lambda))) # take the mean of 1000 simulations
-
 ```
 ## Display the Distribution
-```{r display}
+
+```r
 library(ggplot2)
-g <- ggplot(mns, aes(x = x, fill = size)) + geom_histogram(alpha = .20, binwidth=.3, colour = "black", aes(y = ..density..)) 
+qplot(mns) + geom_histogram()
 ```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](AssignmentPart1_files/figure-html/display-1.png)
 #It worked!
 
 ##Next, overlay the theoretical and sample means
-```{r means}
+
+```r
 SampleMean <- mean(mns)
 CLTMean <- 1/lambda
+```
